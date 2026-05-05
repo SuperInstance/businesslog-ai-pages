@@ -3,150 +3,1109 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Businesslog -- Fleet Business Intelligence</title>
+  <title>Businesslog — Fleet Business Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    :root { --bg: #0a0e17; --surface: #121825; --border: #1e2a3a; --text: #e2e8f0; --muted: #64748b; --accent: #10b981; }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 3rem; border-bottom: 1px solid var(--border); }
-    .logo { font-weight: 700; font-size: 1.2rem; }
-    .hero { text-align: center; padding: 5rem 0 3rem; }
-    .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1.25rem; }
-    .hero h1 span { color: var(--accent); }
-    .hero .sub { font-size: 1.25rem; color: var(--muted); max-width: 600px; margin: 0 auto 2rem; }
-    .badge-row { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
-    .badge { background: var(--surface); border: 1px solid var(--border); padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.8rem; }
-    .section { padding: 4rem 0; }
-    .section h2 { font-size: 2rem; margin-bottom: 0.75rem; }
-    .section .lead { color: var(--muted); max-width: 680px; margin-bottom: 2.5rem; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
-    .card h3 { font-size: 1.1rem; margin-bottom: 0.75rem; }
-    .card p { color: var(--muted); font-size: 0.9rem; }
-    .plato-box { background: linear-gradient(135deg, #0f1a0f 0%, #0a1a0a 100%); border: 1px solid #1a3a1a; border-radius: 16px; padding: 2rem; text-align: center; margin: 2rem 0; }
-    .plato-box h3 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--accent); }
-    .plato-box p { color: var(--muted); max-width: 560px; margin: 0 auto; }
-    .stats-row { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
-    .stat { text-align: center; }
-    .stat .num { font-size: 2rem; font-weight: 700; color: var(--accent); }
-    .stat .label { font-size: 0.8rem; color: var(--muted); }
-    .cta { text-align: center; padding: 4rem 0; }
-    .cta h2 { font-size: 2.25rem; margin-bottom: 1rem; }
-    .cta p { color: var(--muted); margin-bottom: 2rem; }
-    .btn { display: inline-block; background: var(--accent); color: white; padding: 0.875rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; }
-    .how-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; }
-    .how-step { display: flex; gap: 1.5rem; padding: 1.25rem 0; border-bottom: 1px solid var(--border); }
-    .how-step:last-child { border-bottom: none; }
-    .step-num { width: 40px; height: 40px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
-    .step-content h4 { font-size: 1.05rem; margin-bottom: 0.4rem; }
-    .step-content p { color: var(--muted); font-size: 0.9rem; }
-    .live-bar { background: var(--surface); border-top: 1px solid var(--border); padding: 0.75rem 0; text-align: center; }
-    .live-dot { display: inline-block; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; margin-right: 0.4rem; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
-    footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; color: var(--muted); font-size: 0.85rem; }
-    @media (max-width: 768px) { .hero h1 { font-size: 2rem; } }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-base: #0b0d12;
+      --bg-surface: #12151c;
+      --bg-card: #161a24;
+      --bg-card-hover: #1c2130;
+      --border: #1e2435;
+      --border-bright: #2d3548;
+      --accent: #3d7fff;
+      --accent-dim: rgba(61,127,255,0.12);
+      --accent-glow: rgba(61,127,255,0.25);
+      --green: #2dd4a8;
+      --green-dim: rgba(45,212,168,0.1);
+      --amber: #f0a840;
+      --amber-dim: rgba(240,168,64,0.1);
+      --violet: #a78bfa;
+      --violet-dim: rgba(167,139,250,0.1);
+      --text-primary: #e4e8f0;
+      --text-secondary: #7a8499;
+      --text-muted: #4a5168;
+      --text-accent: #6b9fff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(11,13,18,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+
+    .nav-logo svg { flex-shrink: 0; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text-primary); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-size: 13px !important;
+      font-weight: 600;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: #5590ff;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 160px 0 100px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(61,127,255,0.2);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-accent);
+      margin-bottom: 32px;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 60px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--text-accent);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: #5590ff;
+      box-shadow: 0 4px 24px var(--accent-glow);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-bright);
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--text-muted);
+      transform: translateY(-1px);
+    }
+
+    .hero-stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 72px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-stat { text-align: center; }
+
+    .hero-stat .num {
+      font-size: 32px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-primary);
+      letter-spacing: -1px;
+    }
+
+    .hero-stat .label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    /* SECTION */
+    section { padding: 96px 0; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 64px;
+    }
+
+    /* CARDS */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      transition: background 0.25s, border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-bright);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card-icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 20px;
+    }
+
+    .card-blue .card-icon { background: var(--accent-dim); color: var(--text-accent); }
+    .card-green .card-icon { background: var(--green-dim); color: var(--green); }
+    .card-amber .card-icon { background: var(--amber-dim); color: var(--amber); }
+    .card-violet .card-icon { background: var(--violet-dim); color: var(--violet); }
+
+    .card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.2px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .card-blue .card-tag { background: var(--accent-dim); color: var(--text-accent); }
+    .card-green .card-tag { background: var(--green-dim); color: var(--green); }
+    .card-amber .card-tag { background: var(--amber-dim); color: var(--amber); }
+    .card-violet .card-tag { background: var(--violet-dim); color: var(--violet); }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* MARQUEE */
+    .marquee-section {
+      padding: 48px 0;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 48px;
+      animation: scroll 30s linear infinite;
+      width: max-content;
+    }
+
+    .marquee-track span {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .marquee-sep { color: var(--border-bright); }
+
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* PLATO SECTION */
+    .plato-section {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .plato-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .plato-left { }
+
+    .plato-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--violet);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 20px;
+    }
+
+    .plato-eyebrow svg { color: var(--violet); }
+
+    .plato-left h2 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.6px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .plato-left p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .plato-code {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-top: 24px;
+    }
+
+    .plato-code .kw { color: var(--violet); }
+    .plato-code .str { color: var(--green); }
+    .plato-code .cm { color: var(--text-muted); }
+
+    .plato-right { }
+
+    .plato-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .flow-step + .flow-step { margin-top: 2px; }
+
+    .flow-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      border: 1px solid rgba(61,127,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-accent);
+      flex-shrink: 0;
+    }
+
+    .flow-content { flex: 1; }
+
+    .flow-content strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .flow-content span {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 0;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    /* DELTA SECTION */
+    .delta-section { background: var(--bg-base); }
+
+    .delta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .delta-left { }
+
+    .delta-visual {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+    }
+
+    .delta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 2px;
+      margin-bottom: 2px;
+    }
+
+    .delta-tile {
+      aspect-ratio: 1;
+      background: var(--bg-card);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--text-muted);
+      transition: background 0.2s;
+    }
+
+    .delta-tile:hover { background: var(--bg-card-hover); }
+    .delta-tile.active { background: var(--accent-dim); color: var(--text-accent); }
+    .delta-tile.green { background: var(--green-dim); color: var(--green); }
+    .delta-tile.amber { background: var(--amber-dim); color: var(--amber); }
+
+    .delta-legend {
+      display: flex;
+      gap: 24px;
+      margin-top: 16px;
+    }
+
+    .delta-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .delta-legend-item .swatch {
+      width: 10px; height: 10px;
+      border-radius: 2px;
+    }
+
+    .delta-right h2 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 20px;
+    }
+
+    .delta-right p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .delta-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .delta-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .delta-list li svg { color: var(--green); flex-shrink: 0; margin-top: 2px; }
+
+    /* METRICS BAR */
+    .metrics-bar {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 32px 0;
+    }
+
+    .metrics-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .metric-item { text-align: center; }
+
+    .metric-item .val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+
+    .metric-item .key {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 64px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-left { }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 400px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text-primary); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .container { padding: 0 24px; }
+      .hero { padding: 120px 0 72px; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+      .plato-inner, .delta-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-inner { flex-direction: column; gap: 32px; align-items: flex-start; }
+      .nav-links { display: none; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- NAV -->
   <nav>
-    <div class="logo">Businesslog</div>
-    <div class="badge" style="border-color: var(--accent); color: var(--accent);">PLATO Connected</div>
+    <div class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect width="28" height="28" rx="6" fill="#3d7fff" fill-opacity="0.15"/>
+        <rect x="1" y="1" width="26" height="26" rx="5" stroke="#3d7fff" stroke-opacity="0.3" stroke-width="1"/>
+        <rect x="6" y="6" width="7" height="7" rx="1" fill="#3d7fff"/>
+        <rect x="15" y="6" width="7" height="7" rx="1" fill="#3d7fff" fill-opacity="0.4"/>
+        <rect x="6" y="15" width="7" height="7" rx="1" fill="#3d7fff" fill-opacity="0.4"/>
+        <rect x="15" y="15" width="7" height="7" rx="1" fill="#3d7fff" fill-opacity="0.7"/>
+      </svg>
+      Businesslog
+    </div>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#plato">PLATO</a></li>
+      <li><a href="#delta">Delta Recording</a></li>
+      <li><a href="#" class="nav-cta">Get Access</a></li>
+    </ul>
   </nav>
-  <div class="container hero">
-    <h1>Intelligence That<br><span>Compounds</span></h1>
-    <p class="sub">File what matters. Accumulate intelligence. Query when you need it. PLATO turns raw activity into compound knowledge.</p>
-    <div class="badge-row">
-      <span class="badge">Delta Recording</span>
-      <span class="badge">Presence Tracking</span>
-      <span class="badge">Queryable History</span>
+
+  <!-- HERO -->
+  <div class="container">
+    <section class="hero">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Fleet Operations Intelligence
+      </div>
+      <h1>Every number is a tile.<br><em>Every tile builds the picture.</em></h1>
+      <p class="hero-sub">
+        Businesslog captures every KPI, financial entry, and margin calculation across your entire fleet.
+        Not a spreadsheet. Not a dashboard. A living record — queryable, composable, filed to PLATO.
+      </p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary">
+          Start Tracking
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#features" class="btn-secondary">See the architecture</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">Real-time</div>
+          <div class="label">KPI Streams</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">Delta</div>
+          <div class="label">Financial Recording</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">PLATO</div>
+          <div class="label">Knowledge Graph</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">Fleet-wide</div>
+          <div class="label">Business Lines</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <hr class="divider">
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span>Revenue Tracking</span><span class="marquee-sep">◆</span>
+      <span>Margin Analysis</span><span class="marquee-sep">◆</span>
+      <span>Delta Recording</span><span class="marquee-sep">◆</span>
+      <span>Fleet Intelligence</span><span class="marquee-sep">◆</span>
+      <span>PLATO Integration</span><span class="marquee-sep">◆</span>
+      <span>KPI Dashboards</span><span class="marquee-sep">◆</span>
+      <span>Multi-line Reporting</span><span class="marquee-sep">◆</span>
+      <span>Business Decisions</span><span class="marquee-sep">◆</span>
+      <span>Revenue Tracking</span><span class="marquee-sep">◆</span>
+      <span>Margin Analysis</span><span class="marquee-sep">◆</span>
+      <span>Delta Recording</span><span class="marquee-sep">◆</span>
+      <span>Fleet Intelligence</span><span class="marquee-sep">◆</span>
+      <span>PLATO Integration</span><span class="marquee-sep">◆</span>
+      <span>KPI Dashboards</span><span class="marquee-sep">◆</span>
+      <span>Multi-line Reporting</span><span class="marquee-sep">◆</span>
+      <span>Business Decisions</span><span class="marquee-sep">◆</span>
     </div>
   </div>
-  <section class="section">
+
+  <!-- FEATURES -->
+  <section id="features">
     <div class="container">
-      <h2>Everything That Matters, Filed</h2>
-      <p class="lead">Stop losing track. Start compounding.</p>
-      <div class="grid-3">
-        <div class="card">
+      <p class="section-label">Core Capabilities</p>
+      <h2 class="section-title">The four pillars of fleet business intelligence</h2>
+      <p class="section-sub">
+        Every business line generates data. Most of it disappears into disconnected spreadsheets.
+        Businesslog treats each metric as a first-class citizen — timestamped, categorized, and filed where it can be found.
+      </p>
+
+      <div class="cards-grid">
+
+        <!-- KPI Tracking -->
+        <div class="card card-blue">
+          <div class="card-tag">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M5 3v2l1.5 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Real-time
+          </div>
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M3 17V11M7 17V7M11 17V13M15 17V3M19 17V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
           <h3>KPI Tracking</h3>
-          <p>Track the numbers that matter. Revenue, expenses, margin, utilization. Every entry compounds into a complete financial picture.</p>
+          <p>
+            Define key performance indicators across every business line — catch rates, fuel efficiency,
+            crew utilization, port fees per call. Each KPI streams data in real time from vessel reports,
+            manual entries, or automated integrations. Set thresholds and receive alerts when a metric
+            drifts outside expected ranges. Every KPI is queryable across any time window, with full
+            historical depth from the day you started tracking.
+          </p>
         </div>
-        <div class="card">
+
+        <!-- Financial Logging -->
+        <div class="card card-green">
+          <div class="card-tag">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Delta Recording
+          </div>
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <rect x="2" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M6 9h4M6 13h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="15" cy="13" r="1.5" fill="currentColor"/>
+            </svg>
+          </div>
           <h3>Financial Logging</h3>
-          <p>Log every transaction with context. Not just what was spent, but why. Context compounds with every entry.</p>
+          <p>
+            Log every financial event — fish sales, ice purchases, engine repairs, ice, fuel deliveries,
+            crew shares, port charges. Businesslog records the <strong>delta</strong>, not just the balance:
+            the specific revenue event, the exact expense line, the net margin contribution of that transaction.
+            This granularity means you can trace any number back to its origin. Compare this season's fuel
+            costs against the last three years. Break down operating expenses by vessel, by week, by species.
+            The books aren't just balanced — they're navigable.
+          </p>
         </div>
-        <div class="card">
+
+        <!-- Margin Analysis -->
+        <div class="card card-amber">
+          <div class="card-tag">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 8L5 5l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Automated
+          </div>
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M11 7v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
           <h3>Margin Analysis</h3>
-          <p>Know your true margins by project, client, and operation type. PLATO surfaces the real numbers, not the estimates.</p>
+          <p>
+            Gross margin per trip. Net margin per vessel. Contribution margin by species.
+            Businesslog calculates margins automatically as financial data flows in — no manual
+            spreadsheets, no end-of-season reconciliation surprises. Run scenario analysis on the fly:
+            what happens to per-trip margins if fuel rises 8%? What species mix gives the best
+            return on ice investment? Margin analysis surfaces the levers that move the needle,
+            not just the numbers that recorded what already happened.
+          </p>
         </div>
-        <div class="card">
-          <h3>Cross-Reference</h3>
-          <p>Ask: What was the fuel cost for the Alaska season compared to last year? PLATO queries across your entire financial history.</p>
-        </div>
-        <div class="card">
-          <h3>Audit Trail</h3>
-          <p>Every dollar logged is provenance-signed. When you need documentation for an investor, the room generates it.</p>
-        </div>
-        <div class="card">
+
+        <!-- Fleet-wide Intelligence -->
+        <div class="card card-violet">
+          <div class="card-tag">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            PLATO Powered
+          </div>
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <circle cx="11" cy="11" r="3" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 2"/>
+              <circle cx="11" cy="11" r="10" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3 3"/>
+            </svg>
+          </div>
           <h3>Fleet-wide Intelligence</h3>
-          <p>Cross-reference performance across all operations. Which vessel is most efficient? Which client is most profitable? The fleet knows.</p>
+          <p>
+            Aggregated business intelligence across all vessels, all seasons, all business lines.
+            Query the entire fleet's performance history in natural language: "Show me all trips where
+            fuel costs exceeded 22% of revenue." "Which vessels achieved positive margins in Q3 last year?"
+            Business decisions filed to PLATO become queryable — the knowledge from every trip, every market
+            fluctuation, every crew decision accumulates into a fleet brain that makes future decisions smarter.
+          </p>
         </div>
 
       </div>
     </div>
   </section>
-  <section class="section" style="background: var(--surface);">
+
+  <hr class="divider">
+
+  <!-- PLATO SECTION -->
+  <section id="plato" class="plato-section">
     <div class="container">
-      <h2>How It Works</h2>
-      <p class="lead">Three steps from activity to intelligence.</p>
-      <div class="how-box">
-        <div class="how-step">
-          <div class="step-num">1</div>
-          <div class="step-content">
-            <h4>Start a Room</h4>
-            <p>Create a PLATO room for your operation. Every tile you file goes into that room -- the room becomes the complete record.</p>
+      <div class="plato-inner">
+        <div class="plato-left">
+          <div class="plato-eyebrow">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="2" fill="currentColor"/><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 2"/></svg>
+            PLATO Integration
+          </div>
+          <h2>Business decisions filed to PLATO become queryable</h2>
+          <p>
+            Every metric logged in Businesslog is not just stored — it's reasoned about.
+            Financial events, KPI thresholds crossed, margin shifts: these get filed to PLATO's
+            knowledge graph as structured, linkable facts.
+          </p>
+          <p>
+            This means your fleet's accumulated business intelligence isn't locked in a database
+            you have to query manually. It's organized by meaning. You can ask questions you didn't
+            plan to ask — and get answers that draw from every trip across every vessel.
+          </p>
+          <div class="plato-code">
+            <span class="cm">// Query the fleet brain</span><br>
+            <span class="kw">select</span> vessel, trip, margin_pct<br>
+            <span class="kw">from</span> businesslog.trips<br>
+            <span class="kw">where</span> date &gt;= <span class="str">season_start</span><br>
+            <span class="kw">and</span> fuel_cost_pct &gt; <span class="str">0.20</span><br>
+            <span class="kw">order by</span> margin_pct desc;<br><br>
+            <span class="cm">// PLATO surfaces: patterns, anomalies, drivers</span>
           </div>
         </div>
-        <div class="how-step">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <h4>File as You Work</h4>
-            <p>Got a result? A decision? A question? One entry files it to PLATO. Delta recording means you store what changed, not the full state.</p>
-          </div>
-        </div>
-        <div class="how-step">
-          <div class="step-num">3</div>
-          <div class="step-content">
-            <h4>Query the Intelligence</h4>
-            <p>Ask questions across your accumulated history. What was the pattern last season? Which approach worked better? PLATO answers from your compound knowledge base.</p>
+        <div class="plato-right">
+          <div class="plato-flow">
+            <div class="flow-step">
+              <div class="flow-num">1</div>
+              <div class="flow-content">
+                <strong>Data Lands</strong>
+                <span>Vessel reports, financial entries, KPI updates stream into Businesslog</span>
+              </div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+              <div class="flow-num">2</div>
+              <div class="flow-content">
+                <strong>Delta Recorded</strong>
+                <span>Each transaction stored as a first-class delta with full lineage</span>
+              </div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+              <div class="flow-num">3</div>
+              <div class="flow-content">
+                <strong>Filed to PLATO</strong>
+                <span>Structured facts linked into the fleet's knowledge graph</span>
+              </div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+              <div class="flow-num">4</div>
+              <div class="flow-content">
+                <strong>Queryable Intelligence</strong>
+                <span>Cross-vessel, cross-season queries return reasoning-backed answers</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <div class="container">
-    <div class="plato-box">
-      <h3>PLATO: The Intelligence Layer</h3>
-      <p>PLATO's delta recording means you only store what changed -- not full snapshots. 95-99% storage reduction. 100% accuracy. Your data compounds over time, not just fills up.</p>
-      <div class="stats-row">
-        <div class="stat"><div class="num">95-99%</div><div class="label">Storage Reduction</div></div>
-        <div class="stat"><div class="num">100%</div><div class="label">Record Accuracy</div></div>
-        <div class="stat"><div class="num">infinity</div><div class="label">Compounding Value</div></div>
+
+  <hr class="divider">
+
+  <!-- DELTA SECTION -->
+  <section id="delta" class="delta-section">
+    <div class="container">
+      <div class="delta-grid">
+        <div class="delta-left">
+          <div class="delta-visual">
+            <div class="delta-row">
+              <div class="delta-tile active">Q1</div>
+              <div class="delta-tile green">Q2</div>
+              <div class="delta-tile">Q3</div>
+              <div class="delta-tile">Q4</div>
+            </div>
+            <div class="delta-row">
+              <div class="delta-tile green">Q1</div>
+              <div class="delta-tile active">Q2</div>
+              <div class="delta-tile amber">Q3</div>
+              <div class="delta-tile">Q4</div>
+            </div>
+            <div class="delta-row">
+              <div class="delta-tile">Q1</div>
+              <div class="delta-tile amber">Q2</div>
+              <div class="delta-tile">Q3</div>
+              <div class="delta-tile active">Q4</div>
+            </div>
+            <div class="delta-row">
+              <div class="delta-tile">Q1</div>
+              <div class="delta-tile">Q2</div>
+              <div class="delta-tile active">Q3</div>
+              <div class="delta-tile green">Q4</div>
+            </div>
+            <div class="delta-legend">
+              <div class="delta-legend-item">
+                <div class="swatch" style="background: var(--accent);"></div>
+                Revenue delta
+              </div>
+              <div class="delta-legend-item">
+                <div class="swatch" style="background: var(--green);"></div>
+                Margin up
+              </div>
+              <div class="delta-legend-item">
+                <div class="swatch" style="background: var(--amber);"></div>
+                Cost pressure
+              </div>
+              <div class="delta-legend-item">
+                <div class="swatch" style="background: var(--bg-card-hover);"></div>
+                Baseline
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="delta-right">
+          <p class="section-label">Delta Recording</p>
+          <h2>Every financial event, captured at the delta level</h2>
+          <p>
+            Most business software records balances. Businesslog records events.
+            A balance tells you where you are. A delta tells you how you got there — and
+            what to do next.
+          </p>
+          <p>
+            When a vessel lands a catch, Businesslog logs the revenue delta against that trip.
+            When fuel prices shift, the delta is recorded against the next reporting period.
+            Each entry carries forward a full audit trail: amount, source vessel, date, business line,
+            and the resulting margin impact.
+          </p>
+          <ul class="delta-list">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Every transaction logged as a discrete delta with full provenance
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Revenue and expense deltas tracked per vessel, per trip, per season
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Margin impact calculated automatically for every financial event
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Compare deltas across any time window, any vessel combination
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              File any decision point to PLATO for cross-fleet reasoning
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS BAR -->
+  <div class="metrics-bar">
+    <div class="container">
+      <div class="metrics-inner">
+        <div class="metric-item">
+          <div class="val">KB→TB</div>
+          <div class="key">Data Scale</div>
+        </div>
+        <div class="metric-item">
+          <div class="val">Delta</div>
+          <div class="key">Recording Mode</div>
+        </div>
+        <div class="metric-item">
+          <div class="val">PLATO</div>
+          <div class="key">Knowledge Graph</div>
+        </div>
+        <div class="metric-item">
+          <div class="val">Fleet</div>
+          <div class="key">Business Lines</div>
+        </div>
+        <div class="metric-item">
+          <div class="val">Query</div>
+          <div class="key">Natural Language</div>
+        </div>
       </div>
     </div>
   </div>
-  <section class="cta">
-    <div class="container">
-      <h2>Start Compounding Your Intelligence</h2>
-      <p>Every entry compounds. Every query surfaces something new.</p>
-      <a href="https://github.com/SuperInstance/businesslog-agent" class="btn">View on GitHub</a>
-    </div>
-  </section>
-  <div class="live-bar">
-    <span><span class="live-dot"></span>PLATO rooms active -- intelligence compounding</span>
-  </div>
+
+  <!-- FOOTER -->
   <footer>
-    <p>Businesslog is part of the Cocapn fleet.</p>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <div class="footer-logo">
+            <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+              <rect width="28" height="28" rx="6" fill="#3d7fff" fill-opacity="0.15"/>
+              <rect x="1" y="1" width="26" height="26" rx="5" stroke="#3d7fff" stroke-opacity="0.3" stroke-width="1"/>
+              <rect x="6" y="6" width="7" height="7" rx="1" fill="#3d7fff"/>
+              <rect x="15" y="6" width="7" height="7" rx="1" fill="#3d7fff" fill-opacity="0.4"/>
+              <rect x="6" y="15" width="7" height="7" rx="1" fill="#3d7fff" fill-opacity="0.4"/>
+              <rect x="15" y="15" width="7" height="7" rx="1" fill="#3d7fff" fill-opacity="0.7"/>
+            </svg>
+            Businesslog
+          </div>
+          <p>
+            Fleet business intelligence built on delta recording and PLATO-powered knowledge management.
+            Numbers don't lie. Make them work.
+          </p>
+        </div>
+        <ul class="footer-links">
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">PLATO Integration</a></li>
+          <li><a href="#">API Reference</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
   </footer>
+
 </body>
 </html>
